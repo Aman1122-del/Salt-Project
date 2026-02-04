@@ -1,0 +1,87 @@
+/* Single Page Visual Variants Grid */
+.variants-section {
+    padding: 20px 0;
+}
+.variant-card {
+    background: #fff;
+    padding: 0; /* No padding on container for full-width image */
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08); 
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    overflow: hidden; /* Clip image corners */
+}
+.variant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    border-color: #EF9B0F;
+}
+.variant-img {
+    width: 100%; /* Force full width */
+    height: 220px; /* Adjusted height for better aspect ratio */
+    object-fit: cover; /* Fill the area nicely */
+    margin-bottom: 0;
+    display: block;
+    transform: scale(1.1); /* Zoom in slightly to reduce internal whitespace if any */
+    transition: transform 0.4s ease;
+}
+.variant-card:hover .variant-img {
+    transform: scale(1.15); /* Subtle zoom on hover */
+}
+.variant-body {
+    padding: 25px; /* Add padding here for text */
+}
+.variant-card h5 {
+    font-size: 20px; 
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #333;
+    text-transform: uppercase;
+}
+.variant-spec {
+    font-size: 16px; 
+    color: #666;
+    margin: 0;
+}
+
+/* Detailed Spec Table */
+.spec-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+.spec-table thead th {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    font-weight: 500;
+    border: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+.spec-table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #555;
+    font-size: 14px;
+    vertical-align: middle;
+}
+.spec-table tbody tr:last-child td {
+    border-bottom: none;
+}
+.spec-table tbody tr:hover td {
+    background-color: #f9f9f9;
+    color: #EF9B0F;
+}
+#fh5co-services, #fh5co-started, #fh5co-testimonial, #fh5co-started, #fh5co-product, #fh5co-about, #fh5co-contact, #fh5co-footer{
+    padding: 0px !important;
+}
+.product-carousel{
+        margin-bottom: 2em !important; 
+}
