@@ -70,7 +70,7 @@
           <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
             <ul class="navbar-nav py-3 py-lg-0 mt-1 mb-2 my-lg-0 ms-lg-n1">
               <li class="nav-item "><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-			  <li class="nav-item "><a class="nav-link" href="{{ url('/about') }}">About</a></li>
+			  <li class="nav-item "><a class="nav-link" href="{{ url('/about') }}">About Us</a></li>
               <li class="nav-item active"><a class="nav-link" href="{{ url('/product') }}">Products</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url('/our-factory') }}">Our Factory</a></li>
               <li class="nav-item "><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
@@ -104,135 +104,55 @@
 	</header>
 	
 	<div id="fh5co-product">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Our Products</h2>
-					<p>Discover our premium products, handcrafted with care and quality.</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/lamp-salt.jpeg') }}');">
-							<div class="inner">
-								<p>
-									
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc">
-							<h3><a href="{{ url('/single') }}">Salt Lamp</a></h3>
-							
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/ediable-salt.png') }}');">
-							<div class="inner">
-								<p>
-									
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc">
-							<h3><a href="{{ url('/single') }}">Ediable Salt</a></h3>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/bath-salt.jpg') }}');">
-							<div class="inner">
-								<p>
-									
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc">
-							<h3><a href="{{ url('/single') }}">Bath Salt</a></h3>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/salt-candle-holder.jpeg') }}');">
-							<div class="inner">
-								<p>
-									
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc">
-							<h3><a href="{{ url('/single') }}">Salt Candle Holder</a></h3>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/salt-tiles.jpeg') }}');">
-							<div class="inner">
-								<p>
-									
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc">
-							<h3><a href="{{ url('/single') }}">Salt Tiles </a></h3>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/salt-ulinary.jpeg') }}');">
-							<div class="inner">
-								<p>
-									
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc">
-							<h3><a href="{{ url('/single') }}">Salt Culinary</a></h3>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Our Top Products.</h2>
+                    <p>Discover our premium products, handcrafted with care and quality.</p>
+                </div>
+            </div>
+
+            @foreach($products->chunk(3) as $chunk)
+                <div class="row">
+                    @foreach($chunk as $product)
+                        <div class="col-md-4 text-center animate-box" onclick="window.location='{{ route('product.show', $product->slug) }}'" style="cursor: pointer;">
+                            <div class="product">
+                                <div class="product-grid" style="background-image:url('{{ asset($product->image) }}');">
+                                    <div class="inner">
+                                        <p>
+                                            <a href="{{ route('product.show', $product->slug) }}" class="icon"><i class="icon-eye"></i></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="desc product-name-card">
+                                    <h3><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+                                    <p>{{ $product->short_description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
+
+        </div>
+    </div>
 
 	<footer id="fh5co-footer" role="contentinfo">
 		<div class="container">
 			<div class="row row-pb-md footer-items ">
 				<div class="col-md-4 fh5co-widget">
 					<span><a href="{{ url('/') }}"><img class="logo2" src="{{ asset('images/logo.png') }}" alt="Salt International" loading="lazy"></a></span>
-					<p class="footer-desc">Salt International is your trusted source for premium Himalayan Pink Salt. We deliver nature's purest minerals straight from the mines to you, ensuring quality and authenticity in every product.</p>
+					<p class="footer-desc">Salt International is your trusted source for premium Himalayan Pink Salt. We deliver nature's purest Pink Himalayan Salt straight from the mines to you, ensuring quality and authenticity in every product.</p>
 				</div>
 				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
 					<ul class="fh5co-footer-links">
 						<li class="footer-heading">Useful Links</li>
 						<li><a href="{{ url('/') }}">Home</a></li>
-						<li><a href="{{ url('/about') }}">About</a></li>
-						<li><a href="{{ url('/contact') }}">Contact</a></li>
-					</ul>
-				</div>
-				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
-					<ul class="fh5co-footer-links">
-						<li class="footer-heading">Quick Links</li>
 						<li><a href="{{ url('/product') }}">Products</a></li>
-						
-
+						<li><a href="#">About</a></li>
+						<li><a href="#">Contact</a></li>
 					</ul>
 				</div>
-
 				<div class="col-md-3 col-sm-4 col-xs-6 col-md-push-1 footer-contact">
 					<div class="fh5co-contact-info">
 						<ul class="fh5co-footer-links">
@@ -244,11 +164,17 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+					<ul class="fh5co-footer-links">
+						
+
+					</ul>
+				</div>
 
 			<div class="row copyright">
 				<div class="col-md-12 text-center">
 					<p>
-						<small class="block">&copy; 2016 Salt International. All Rights Reserved.</small> 
+						<small class="block">&copy; 2026 Salt International. All Rights Reserved.</small> 
 					</p>
 					<p>
 						<ul class="fh5co-social-icons">

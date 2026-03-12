@@ -65,7 +65,7 @@
           <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
             <ul class="navbar-nav py-3 py-lg-0 mt-1 mb-2 my-lg-0 ms-lg-n1">
               <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-			  <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About</a></li>
+			  <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About Us</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url('/product') }}">Products</a></li>
               <li class="nav-item active"><a class="nav-link" href="{{ url('/our-factory') }}">Our Factory</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
@@ -184,25 +184,17 @@
 			<div class="row row-pb-md footer-items ">
 				<div class="col-md-4 fh5co-widget">
 					<span><a href="{{ url('/') }}"><img class="logo2" src="{{ asset('images/logo.png') }}" alt="Salt International" loading="lazy"></a></span>
-					<p class="footer-desc">Salt International is your trusted source for premium Himalayan Pink Salt. We deliver nature's purest minerals straight from the mines to you, ensuring quality and authenticity in every product.</p>
+					<p class="footer-desc">Salt International is your trusted source for premium Himalayan Pink Salt. We deliver nature's purest Pink Himalayan Salt straight from the mines to you, ensuring quality and authenticity in every product.</p>
 				</div>
 				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
 					<ul class="fh5co-footer-links">
 						<li class="footer-heading">Useful Links</li>
 						<li><a href="{{ url('/') }}">Home</a></li>
-						<li><a href="{{ url('/about') }}">About</a></li>
-						<li><a href="{{ url('/contact') }}">Contact</a></li>
-					</ul>
-				</div>
-				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
-					<ul class="fh5co-footer-links">
-						<li class="footer-heading">Quick Links</li>
 						<li><a href="{{ url('/product') }}">Products</a></li>
-						
-
+						<li><a href="#">About</a></li>
+						<li><a href="#">Contact</a></li>
 					</ul>
 				</div>
-
 				<div class="col-md-3 col-sm-4 col-xs-6 col-md-push-1 footer-contact">
 					<div class="fh5co-contact-info">
 						<ul class="fh5co-footer-links">
@@ -214,11 +206,17 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+					<ul class="fh5co-footer-links">
+						
+
+					</ul>
+				</div>
 
 			<div class="row copyright">
 				<div class="col-md-12 text-center">
 					<p>
-						<small class="block">&copy; 2016 Salt International. All Rights Reserved.</small> 
+						<small class="block">&copy; 2026 Salt International. All Rights Reserved.</small> 
 					</p>
 					<p>
 						<ul class="fh5co-social-icons">
@@ -236,10 +234,10 @@
 	</div>
 
 	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+		<!-- <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a> -->
 	</div>
 
-	<a href="https://wa.me/60146435630" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+	<a href="https://wa.me/923000113977" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
             <i class="fab fa-whatsapp whatsapp-icon"></i>
         </a>
 	

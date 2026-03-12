@@ -65,7 +65,7 @@
           <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
             <ul class="navbar-nav py-3 py-lg-0 mt-1 mb-2 my-lg-0 ms-lg-n1">
               <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-			  <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About</a></li>
+			  <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About Us</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url('/product') }}">Products</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url('/our-factory') }}">Our Factory</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
@@ -196,7 +196,7 @@
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
 
-	<a href="https://wa.me/60146435630" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+	<a href="https://wa.me/923000113977" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
             <i class="fab fa-whatsapp whatsapp-icon"></i>
         </a>
 	

@@ -152,18 +152,22 @@
 
 			setTimeout(function(){
 
+				var activeTabId = $('.fh5co-tab-nav li.active a').data('tab') || '1';
+				var activeContentHeight = $('.tab-content[data-tab-content="' + activeTabId + '"]').outerHeight() || 0;
+				
 				var tabContentWrap = $('.fh5co-tab-content-wrap'),
 					tabHeight = $('.fh5co-tab-nav').outerHeight(),
-					formActiveHeight = $('.tab-content.active').outerHeight(),
-					totalHeight = parseInt(tabHeight + formActiveHeight + 90);
+					totalHeight = parseInt(tabHeight + activeContentHeight + 90);
 
 					tabContentWrap.css('height', totalHeight );
 
 				$(window).resize(function(){
+					var activeTabId = $('.fh5co-tab-nav li.active a').data('tab') || '1';
+					var activeContentHeight = $('.tab-content[data-tab-content="' + activeTabId + '"]').outerHeight() || 0;
+					
 					var tabContentWrap = $('.fh5co-tab-content-wrap'),
 						tabHeight = $('.fh5co-tab-nav').outerHeight(),
-						formActiveHeight = $('.tab-content.active').outerHeight(),
-						totalHeight = parseInt(tabHeight + formActiveHeight + 90);
+						totalHeight = parseInt(tabHeight + activeContentHeight + 90);
 
 						tabContentWrap.css('height', totalHeight );
 				});

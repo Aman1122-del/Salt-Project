@@ -76,12 +76,53 @@
     border-bottom: none;
 }
 .spec-table tbody tr:hover td {
-    background-color: #f9f9f9;
-    color: #EF9B0F;
+    background-color: #f8ad9d;
+    color: #fff;
 }
 #fh5co-services, #fh5co-started, #fh5co-testimonial, #fh5co-started, #fh5co-product, #fh5co-about, #fh5co-contact, #fh5co-footer{
     padding: 0px !important;
 }
 .product-carousel{
         margin-bottom: 2em !important; 
+}
+
+/* Fix for broken float grid on variants */
+.flex-row-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.flex-row-wrap::before, .flex-row-wrap::after {
+    display: none !important;
+}
+.flex-row-wrap .col-md-4, .flex-row-wrap .col-sm-6, .flex-row-wrap .col-xs-12 {
+    display: flex;
+    flex-direction: column;
+}
+.flex-variant {
+    flex: 1; /* Stretch vertically to match row height */
+    display: flex;
+    flex-direction: column;
+}
+.flex-variant .variant-body {
+    flex: 1; /* Distribute text nicely */
+}
+
+/* Centered Tab Navigation (50% of screen) */
+.fh5co-tabs .fh5co-tab-nav {
+    width: 60%; /* 60% of col-md-10 container is approx 50% of screen */
+    margin: 0 auto 3em auto !important;
+    float: none !important;
+    display: flex;
+}
+
+.fh5co-tabs .fh5co-tab-nav li {
+    width: 50% !important; /* Since there are 2 tabs, split them 50/50 */
+    float: none !important;
+}
+
+@media (max-width: 768px) {
+    .fh5co-tabs .fh5co-tab-nav {
+        width: 95%;
+    }
 }

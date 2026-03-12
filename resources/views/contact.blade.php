@@ -70,7 +70,7 @@
           <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
             <ul class="navbar-nav py-3 py-lg-0 mt-1 mb-2 my-lg-0 ms-lg-n1">
               <li class="nav-item "><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-			  <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About</a></li>
+			  <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About Us</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url('/product') }}">Products</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url('/our-factory') }}">Our Factory</a></li>
               <li class="nav-item active"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
@@ -125,11 +125,11 @@
 						<div class="row form-group">
 							<div class="col-md-6">
 								<!-- <label for="fname">First Name</label> -->
-								<input type="text" id="fname" name="fname" class="form-control" placeholder="Firstname" required>
+								<input type="text" id="fname" name="fname" class="form-control" placeholder="First Name" required>
 							</div>
 							<div class="col-md-6">
 								<!-- <label for="lname">Last Name</label> -->
-								<input type="text" id="lname" name="lname" class="form-control" placeholder="Lastname" required>
+								<input type="text" id="lname" name="lname" class="form-control" placeholder="Last Name" required>
 							</div>
 						</div>
 
@@ -143,7 +143,7 @@
 						<div class="row form-group">
 							<div class="col-md-12">
 								<!-- <label for="subject">Subject</label> -->
-								<input type="text" id="subject" name="subject" class="form-control" placeholder="Subject of this message">
+								<input type="text" id="subject" name="subject" class="form-control" placeholder="Subject">
 							</div>
 						</div>
 
@@ -165,7 +165,7 @@
 	</div>
 
 	<div id="map" class="animate-box" data-animate-effect="fadeIn">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1700.2374148989863!2d74.3350838922036!3d31.538580992525578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391904bc9feaef13%3A0x33333ad8dde210cc!2sJail%20Rd%2C%20Lahore%2C%20Pakistan!5e0!3m2!1sen!2s!4v1770189715948!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1700.2374148989863!2d74.3350838922036!3d31.538580992525578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391904bc9feaef13%3A0x33333ad8dde210cc!2sJail%20Rd%2C%20Lahore%2C%20Pakistan!5e0!3m2!1sen!2s!4v1770189715948!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 	</div>
 
 	<footer id="fh5co-footer" role="contentinfo">
@@ -173,25 +173,17 @@
 			<div class="row row-pb-md footer-items ">
 				<div class="col-md-4 fh5co-widget">
 					<span><a href="{{ url('/') }}"><img class="logo2" src="{{ asset('images/logo.png') }}" alt="Salt International" loading="lazy"></a></span>
-					<p class="footer-desc">Salt International is your trusted source for premium Himalayan Pink Salt. We deliver nature's purest minerals straight from the mines to you, ensuring quality and authenticity in every product.</p>
+					<p class="footer-desc">Salt International is your trusted source for premium Himalayan Pink Salt. We deliver nature's purest Pink Himalayan Salt straight from the mines to you, ensuring quality and authenticity in every product.</p>
 				</div>
 				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
 					<ul class="fh5co-footer-links">
 						<li class="footer-heading">Useful Links</li>
 						<li><a href="{{ url('/') }}">Home</a></li>
-						<li><a href="{{ url('/about') }}">About</a></li>
-						<li><a href="{{ url('/contact') }}">Contact</a></li>
-					</ul>
-				</div>
-				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
-					<ul class="fh5co-footer-links">
-						<li class="footer-heading">Quick Links</li>
 						<li><a href="{{ url('/product') }}">Products</a></li>
-						
-
+						<li><a href="#">About</a></li>
+						<li><a href="#">Contact</a></li>
 					</ul>
 				</div>
-
 				<div class="col-md-3 col-sm-4 col-xs-6 col-md-push-1 footer-contact">
 					<div class="fh5co-contact-info">
 						<ul class="fh5co-footer-links">
@@ -203,11 +195,17 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+					<ul class="fh5co-footer-links">
+						
+
+					</ul>
+				</div>
 
 			<div class="row copyright">
 				<div class="col-md-12 text-center">
 					<p>
-						<small class="block">&copy; 2016 Salt International. All Rights Reserved.</small> 
+						<small class="block">&copy; 2026 Salt International. All Rights Reserved.</small> 
 					</p>
 					<p>
 						<ul class="fh5co-social-icons">
@@ -224,9 +222,9 @@
 	</footer>
 	</div>
 	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+		<!-- <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a> -->
 	</div>
-	<a href="https://wa.me/60146435630" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+	<a href="https://wa.me/923000113977" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
             <i class="fab fa-whatsapp whatsapp-icon"></i>
         </a>
 	<!-- jQuery -->

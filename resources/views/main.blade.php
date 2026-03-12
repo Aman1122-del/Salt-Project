@@ -44,11 +44,72 @@
 
 	<style>
 		body{
-		font-family: 'Lato', sans-serif !important;
+		/* font-family: 'Lato', sans-serif !important; */
 		}
 		h2{
-			font-family: Poppins, Sans-serif !important;
+			/* font-family: Poppins, Sans-serif !important; */
 		}
+        /* Search Suggestions CSS */
+        .search-bar-container {
+            position: relative;
+        }
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 0 0 4px 4px;
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+        }
+        .search-suggestions.show {
+            display: block;
+        }
+        .suggestion-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #f1f1f1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+        .suggestion-item:hover {
+            background-color: #f9f9f9;
+        }
+        .suggestion-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .suggestion-item .info {
+            display: flex;
+            flex-direction: column;
+        }
+        .suggestion-item .name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+        .suggestion-item .type {
+            font-size: 11px;
+            color: #888;
+        }
+        .no-results {
+            padding: 15px;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+        }
 	</style>
 	</head>
 	<body>
@@ -78,7 +139,7 @@
           <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
             <ul class="navbar-nav py-3 py-lg-0 mt-1 mb-2 my-lg-0 ms-lg-n1">
               <li class="nav-item active"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-			  <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About</a></li>
+			  <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About Us</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url('/product') }}">Products</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url('/our-factory') }}">Our Factory</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
@@ -87,11 +148,12 @@
           
           <div class="search-bar-container ms-lg-auto py-3 py-lg-0 me-n2">
               <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search..">
+                  <input type="text" id="search-input" class="form-control" placeholder="Search.." autocomplete="off">
                   <span class="input-group-btn">
                       <button class="btn btn-primary" type="button"><i class="icon-search"></i></button>
                   </span>
               </div>
+              <div id="search-suggestions" class="search-suggestions"></div>
           </div>
         </nav>
       </div>
@@ -108,7 +170,7 @@
 		   					<div class="desc">
 		   						<!-- <span class="price">$800</span> -->
 		   						<h2>Coarse Himalayan Pink Salt</h2>
-		   						<p>Pure and raw, sourced from the mines, straight from the heart of Khewra to your doorstep, we deliver premium coarse salt. Globally we serve with trusted quality.</p>
+		   						<p style="color: black;">Pure and raw, sourced from the mines, straight from the heart of Khewra to your doorstep, we deliver premium coarse salt. Globally we serve with trusted quality.</p>
 			   					<!-- <p><a href="single.html" class="btn btn-primary btn-outline btn-lg">Purchase Now</a></p> -->
 		   					</div>
 		   				</div>
@@ -122,7 +184,7 @@
 		   					<div class="desc">
 		   						<!-- <span class="price">$530</span> -->
 		   						<h2>Himalayan Pink Salt</h2>
-		   						<p>Deep within the ancient Himalayan range, free from modern impurities and toxins, lies the purest salt on earth. Naturally it glows with eighty-four essential minerals.</p>
+		   						<p style="color: black;">Deep within the ancient Himalayan range, free from modern impurities and toxins, lies the purest salt on earth. Naturally it glows with eighty-four essential minerals.</p>
 			   					<!-- <p><a href="single.html" class="btn btn-primary btn-outline btn-lg">Purchase Now</a></p> -->
 		   					</div>
 		   				</div>
@@ -136,7 +198,7 @@
 		   					<div class="desc">
 		   						<!-- <span class="price">$750</span> -->
 		   						<h2>Himalayan Rock Salt Lamps</h2>
-		   						<p>Deep from the mines, shaped by skilled hands, sourced from the ancient foothills of the Himalayas, we craft these unique lights. Radiating they warm your home decor.</p>
+		   						<p style="color: black;">Deep from the mines, shaped by skilled hands, sourced from the ancient foothills of the Himalayas, we craft these unique lights. Radiating they warm your home decor.</p>
 			   					
 		   					</div>
 		   				</div>
@@ -191,109 +253,38 @@
 		</div>
 	</div>
 	<div id="fh5co-product">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Our Top Products.</h2>
-					<p>Discover our premium products, handcrafted with care and quality.</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/lamp-salt.jpeg') }}');">
-							<div class="inner">
-								<p>
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc product-name-card">
-							<h3><a href="{{ url('/single') }}">Salt Lamp</a></h3>
-							<p>Crafted from Himalayan rock salt, these lamps purify the air and beautify the place with their warm glow.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/ediable-salt.png') }}');">
-							<div class="inner">
-								<p>
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc product-name-card">
-							<h3><a href="{{ url('/single') }}">Edible Salt</a></h3>
-							<p>Hand-mined Himalayan salt is the purest and unprocessed salt which contains 84 trace minerals.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/bath-salt.jpg') }}');">
-							<div class="inner">
-								<p>
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc product-name-card">
-							<h3><a href="{{ url('/single') }}">Bath Salt</a></h3>
-							<p>Himalayan bath salt has healing & therapeutic properties. It detoxifies the body while providing minerals.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/salt-candle-holder.jpeg') }}');">
-							<div class="inner">
-								<p>
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc product-name-card">
-							<h3><a href="{{ url('/single') }}">Salt Candle Holder</a></h3>
-							<p>Hand-carved from natural Himalayan salt crystals, adding a warm, ambient glow to any space.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/salt-tiles.jpeg') }}');">
-							<div class="inner">
-								<p>
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc product-name-card">
-							<h3><a href="{{ url('/single') }}">Salt Tiles</a></h3>
-							<p>Perfect for building salt walls, spas, and cooking blocks, offering both improved aesthetics and health benefits.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url('{{ asset('images/Products/salt-ulinary.jpeg') }}');">
-							<div class="inner">
-								<p>
-									<a href="{{ url('/single') }}" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc product-name-card">
-							<h3><a href="{{ url('/single') }}">Culinary Salt</a></h3>
-							<p>Premium food-grade Himalayan salt, perfect for gourmet cooking and finishing touches.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <h2>Our Top Products.</h2>
+                    <p>Discover our premium products, handcrafted with care and quality.</p>
+                </div>
+            </div>
+
+            @foreach($products->chunk(3) as $chunk)
+                <div class="row">
+                    @foreach($chunk as $product)
+                        <div class="col-md-4 text-center animate-box" onclick="window.location='{{ route('product.show', $product->slug) }}'" style="cursor: pointer;">
+                            <div class="product">
+                                <div class="product-grid" style="background-image:url('{{ asset($product->image) }}');">
+                                    <div class="inner">
+                                        <p>
+                                            <a href="{{ route('product.show', $product->slug) }}" class="icon"><i class="icon-eye"></i></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="desc product-name-card">
+                                    <h3><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+                                    <p>{{ $product->short_description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
+
+        </div>
+    </div>
 
 	<div id="fh5co-team" class="fh5co-bg-section">
 		<div class="container">
@@ -305,7 +296,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="team-member animate-box" data-animate-effect="fadeIn">
 						<div class="main-content">
 							<img src="{{ asset('images/person1.jpg') }}" alt="Shane Cotter" loading="lazy">
@@ -319,7 +310,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="team-member animate-box" data-animate-effect="fadeIn">
 						<div class="main-content">
 							<img src="{{ asset('images/person2.jpg') }}" alt="Kathryn Wilson" loading="lazy">
@@ -333,26 +324,12 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="team-member animate-box" data-animate-effect="fadeIn">
 						<div class="main-content">
 							<img src="{{ asset('images/person3.jpg') }}" alt="David Hutson" loading="lazy">
 							<span class="category">Quality Control</span>
 							<h4>David Hutson</h4>
-							<ul class="social-icons">
-								<li><a href="#" class="email"><i class="fas fa-envelope"></i></a></li>
-								<li><a href="#" class="wa"><i class="fab fa-whatsapp"></i></a></li>
-								<li><a href="#" class="li"><i class="fab fa-linkedin-in"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="team-member animate-box" data-animate-effect="fadeIn">
-						<div class="main-content">
-							<img src="{{ asset('images/person1.jpg') }}" alt="Thomas Anders" loading="lazy">
-							<span class="category">Marketing</span>
-							<h4>Thomas Anders</h4>
 							<ul class="social-icons">
 								<li><a href="#" class="email"><i class="fas fa-envelope"></i></a></li>
 								<li><a href="#" class="wa"><i class="fab fa-whatsapp"></i></a></li>
@@ -562,12 +539,15 @@
 							</div>
 						</div>
 						<div class="col-md-3 col-sm-6 animate-box">
-							<div class="feature-center" style="padding: 40px 20px;">
+							<div class="feature-center" style="padding: 45px 20px;">
 								<span class="icon">
 									<i class="fas fa-certificate text-white"></i>
 								</span>
 
-								<span class="counter js-counter" data-from="0" data-to="300" data-speed="5000" data-refresh-interval="50">1</span>
+								<div style="display: flex; justify-content: center; align-items: baseline;">
+									<span class="counter js-counter" style="margin-bottom: 0;" data-from="0" data-to="300" data-speed="5000" data-refresh-interval="50">1</span>
+									<span style="font-size: 20px; color: black; font-weight: bold; margin-left: 5px;">MT</span>
+								</div>
 								<span class="counter-label">Production Capacity/Day</span>
 							</div>
 						</div>
@@ -585,7 +565,7 @@
 			<div class="row row-pb-md footer-items ">
 				<div class="col-md-4 fh5co-widget">
 					<span><a href="{{ url('/') }}"><img class="logo2" src="{{ asset('images/logo.png') }}" alt="Salt International" loading="lazy"></a></span>
-					<p class="footer-desc">Salt International is your trusted source for premium Himalayan Pink Salt. We deliver nature's purest minerals straight from the mines to you, ensuring quality and authenticity in every product.</p>
+					<p class="footer-desc">Salt International is your trusted source for premium Himalayan Pink Salt. We deliver nature's purest Pink Himalayan Salt straight from the mines to you, ensuring quality and authenticity in every product.</p>
 				</div>
 				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
 					<ul class="fh5co-footer-links">
@@ -617,7 +597,7 @@
 			<div class="row copyright">
 				<div class="col-md-12 text-center">
 					<p>
-						<small class="block">&copy; 2016 Salt International. All Rights Reserved.</small> 
+						<small class="block">&copy; 2026 Salt International. All Rights Reserved.</small> 
 					</p>
 					<p>
 						<ul class="fh5co-social-icons">
@@ -679,10 +659,10 @@
 	</div>
 
 	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+		<!-- <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a> -->
 	</div>
 
-	<a href="https://wa.me/60146435630" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+	<a href="https://wa.me/923000113977" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
             <i class="fab fa-whatsapp whatsapp-icon"></i>
         </a>
 	
@@ -750,5 +730,61 @@ $(document).ready(function() {
 });
 </script>
 	 
+<script>
+    // Search Functionality
+    $(document).ready(function() {
+        let searchTimeout;
+        const searchInput = $('#search-input');
+        const suggestionsBox = $('#search-suggestions');
+
+        searchInput.on('keyup', function() {
+            clearTimeout(searchTimeout);
+            let query = $(this).val();
+
+            if (query.length < 2) {
+                suggestionsBox.removeClass('show').html('');
+                return;
+            }
+
+            searchTimeout = setTimeout(function() {
+                $.ajax({
+                    url: "{{ route('product.search') }}",
+                    type: "GET",
+                    data: { query: query },
+                    success: function(response) {
+                        suggestionsBox.html('');
+                        if (response.length > 0) {
+                            let html = '';
+                            response.forEach(item => {
+                                html += `
+                                    <div class="suggestion-item" onclick="window.location.href='${item.url}'">
+                                        <img src="${item.image}" alt="${item.name}">
+                                        <div class="info">
+                                            <span class="name">${item.name}</span>
+                                            <span class="type">${item.type}</span>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                            suggestionsBox.html(html).addClass('show');
+                        } else {
+                            suggestionsBox.html('<div class="no-results">No product found</div>').addClass('show');
+                        }
+                    },
+                    error: function() {
+                        console.log('Search error');
+                    }
+                });
+            }, 300); // Debounce 300ms
+        });
+
+        // Hide suggestions when clicking outside
+        $(document).click(function(e) {
+            if (!$(e.target).closest('.search-bar-container').length) {
+                suggestionsBox.removeClass('show');
+            }
+        });
+    });
+</script>
 	</body>
 </html>
