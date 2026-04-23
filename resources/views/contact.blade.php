@@ -42,6 +42,7 @@
 	<link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
 	
 
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	</head>
 	<body>
 		
@@ -151,6 +152,11 @@
 							<div class="col-md-12">
 								<!-- <label for="message">Message</label> -->
 								<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Type your message here..." required></textarea>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-12">
+								<div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
 							</div>
 						</div>
 						<div class="form-group">
@@ -287,6 +293,9 @@
                 complete: function() {
                     submitBtn.val(originalBtnVal);
                     submitBtn.prop('disabled', false);
+                    if (typeof grecaptcha !== 'undefined') {
+                        grecaptcha.reset();
+                    }
                 }
             });
         });

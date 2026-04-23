@@ -25,6 +25,28 @@ public function store(Request $request)
         ], 422);
     }
 
+    // Verify Google reCAPTCHA
+    $recaptchaResponse = $request->input('g-recaptcha-response');
+    if (!$recaptchaResponse) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Please complete the reCAPTCHA verification.'
+        ], 422);
+    }
+
+    $response = \Illuminate\Support\Facades\Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+        'secret' => env('RECAPTCHA_SECRET_KEY'),
+        'response' => $recaptchaResponse,
+        'remoteip' => $request->ip(),
+    ]);
+
+    if (!$response->json('success')) {
+        return response()->json([
+            'success' => false,
+            'message' => 'ReCAPTCHA verification failed. Please try again.'
+        ], 422);
+    }
+
     $name = $request->name ? $request->name : 'Valued Client (Popup)';
 
     $data = [

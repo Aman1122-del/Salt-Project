@@ -111,6 +111,7 @@
             font-size: 14px;
         }
 	</style>
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	</head>
 	<body>
 		
@@ -286,7 +287,7 @@
         </div>
     </div>
 
-	<div id="fh5co-team" class="fh5co-bg-section">
+	<!-- <div id="fh5co-team" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -340,7 +341,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 
 
@@ -435,6 +436,10 @@
                         <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
                     </div>
 
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+                    </div>
+
                     {{-- Submit Button --}}
                     <div class="form-group">
                         {{-- <input> ko <button> mein change kiya taaki "Sending..." spinner chal sake, lekin style wahi 'btn btn-primary' rakha hai --}}
@@ -497,6 +502,9 @@
             <div class="form-group">
                 <label for="quote-desc">Description <span class="required">*</span></label>
                 <textarea id="quote-desc" name="message" class="form-control" rows="4" placeholder="Describe your requirements" required></textarea>
+            </div>
+            <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Send Quotation</button>
         </form>
@@ -653,6 +661,9 @@
 					<label for="quote-desc">Description <span class="required">*</span></label>
 					<textarea id="quote-desc" name="message" class="form-control" rows="4" placeholder="Describe your requirements" required></textarea>
 				</div>
+				<div class="form-group">
+					<div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+				</div>
 				<button type="submit" class="btn btn-primary btn-block">Send Quotation</button>
 			</form>
 		</div>
@@ -724,6 +735,9 @@ $(document).ready(function() {
             complete: function() {
                 submitBtn.text(originalBtnText);
                 submitBtn.prop('disabled', false);
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.reset();
+                }
             }
         });
     });
